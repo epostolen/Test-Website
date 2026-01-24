@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гуманитарная академия | Центр ДПО</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- Переменные и Общие стили --- */
+        :root {
+            --primary-blue: #1a3a5f;
+            --secondary-blue: #2c5282;
+            --light-blue: #ebf4ff;
+            --dark-grey: #333333;
+            --medium-grey: #718096;
+            --light-grey: #f7fafc;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-grey);
+            background-color: var(--white);
+        }
+
+        ul { list-style: none; }
+        a { text-decoration: none; color: inherit; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 15px 35px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: var(--secondary-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .section-title .underline {
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-blue);
+            margin: 0 auto;
+        }
+
+        /* --- Навигация --- */
+        header {
+            background: var(--white);
+            height: 80px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            color: var(--dark-grey);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-blue);
+        }
+
+        /* --- Главный экран (Hero) --- */
+        #home {
+            height: 100vh;
+            background: linear-gradient(rgba(26, 58, 95, 0.8), rgba(26, 58, 95, 0.8)), 
+                        url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 0;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- О нас --- */
+        #about {
+            background: var(--light-grey);
+        }
+
+        .about-flex {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 20px 20px 0px var(--secondary-blue);
+        }
+
+        /* --- Программы обучения --- */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .program-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-card:hover {
+            border-color: var(--secondary-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .program-card i {
+            font-size: 3rem;
+            color: var(--secondary-blue);
+            margin-bottom: 20px;
+        }
+
+        .program-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+
+        .program-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            text-align: left;
+            background: var(--light-blue);
+            border-radius: 5px;
+        }
+
+        .program-card.active .program-details {
+            max-height: 300px;
+            margin-top: 20px;
+            padding: 15px;
+        }
+
+        .program-details li {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .program-details li::before {
+            content: "•";
+            color: var(--secondary-blue);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* --- Контакты --- */
+        #contact {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        #contact .section-title h2 {
+            color: var(--white);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .contact-info-item i {
+            font-size: 1.5rem;
+            margin-right: 20px;
+            background: var(--secondary-blue);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        /* --- Футер --- */
+        footer {
+            background: #122842;
+            color: var(--medium-grey);
+            padding: 20px 0;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        /* --- Адаптивность --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.2rem; }
+            .nav-links { display: none; } /* Для простоты примера скрываем меню на мобильных */
+            .about-flex { flex-direction: column; }
+            .section-title h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Навигация -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">ГА <span style="font-weight: 300;">| Академия</span></div>
+                <ul class="nav-links">
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#programs">Программы</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Главный раздел -->
+    <section id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Экспертное обучение для вашего карьерного роста</h1>
+                <p>Гуманитарная академия — ваш надежный партнер в сфере дополнительного профессионального образования. Получите актуальные знания от практиков.</p>
+                <a href="#programs" class="btn">Выбрать программу</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- О нас -->
+    <section id="about">
+        <div class="container">
+            <div class="about-flex">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="Обучение">
+                </div>
+                <div class="about-text">
+                    <div class="section-title" style="text-align: left;">
+                        <h2>Наша история</h2>
+                        <div class="underline" style="margin: 0;"></div>
+                    </div>
+                    <p>Основанная более 10 лет назад в самом сердце Урала, «Гуманитарная академия» прошла путь от локального тренингового центра до ведущего института дополнительного образования.</p>
+                    <br>
+                    <p>Наша миссия — сделать качественное профессиональное образование доступным, современным и ориентированным на практику. Мы гордимся тем, что тысячи наших выпускников сегодня успешно работают в ведущих компаниях Свердловской области и всей России.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Программы -->
+    <section id="programs">
+        <div class="container">
+            <div class="section-title">
+                <h2>Управление персоналом</h2>
+                <div class="underline"></div>
+                <p style="margin-top: 15px;">Нажмите на карточку, чтобы узнать подробности курса</p>
+            </div>
+
+            <div class="programs-grid">
+                <!-- Программа 1 -->
+                <div class="program-card" onclick="toggleProgram(this)">
+                    <i class="fas fa-users-cog"></i>
+                    <h3>HR-Директор</h3>
+                    <ul class="program-details">
+                        <li>Стратегическое управление HR</li>
+                        <li>Бюджетирование подразделения</li>
+                        <li>Построение корпоративной культуры</li>
+                        <li>HR-аналитика и метрики</li>
+                    </ul>
+                </div>
+
+                <!-- Программа 2 -->
+                <div class="program-card" onclick="toggleProgram(this)">
+                    <i class="fas fa-user-plus"></i>
+                    <h3>Рекрутмент и адаптация</h3>
+                    <ul class="program-details">
+                        <li>Методы поиска талантов</li>
+                        <li>Техники проведения интервью</li>
+                        <li>Система Onboarding</li>
+                        <li>Автоматизация подбора (ATS)</li>
+                    </ul>
+                </div>
+
+                <!-- Программа 3 -->
+                <div class="program-card" onclick="toggleProgram(this)">
+                    <i class="fas fa-balance-scale"></i>
+                    <h3>Трудовое право</h3>
+                    <ul class="program-details">
+                        <li>Актуальные изменения ТК РФ</li>
+                        <li>Кадровое делопроизводство</li>
+                        <li>Проверки ГИТ: как подготовиться</li>
+                        <li>Сложные случаи увольнений</li>
+                    </ul>
+                </div>
+
+                <!-- Программа 4 -->
+                <div class="program-card" onclick="toggleProgram(this)">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Оценка и мотивация</h3>
+                    <ul class="program-details">
+                        <li>Система KPI и OKR</li>
+                        <li>Метод "360 градусов"</li>
+                        <li>Грейдирование должностей</li>
+                        <li>Нематериальная мотивация</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Контакты</h2>
+                <div class="underline"></div>
+            </div>
+            
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="contact-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Адрес</h4>
+                            <p>г. Екатеринбург, ул. 8 Марта, 12, офис 405</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Часы работы</h4>
+                            <p>Пн — Пт: 09:00 - 18:00<br>Сб — Вс: Выходной</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Телефон</h4>
+                            <p>+7 (343) 000-00-00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-map">
+                    <!-- Заглушка для карты или формы -->
+                    <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; border: 1px dashed var(--medium-grey);">
+                        <h3>Записаться на консультацию</h3>
+                        <p style="margin-bottom: 20px; font-size: 0.9rem;">Оставьте свои контакты, и наш методист перезвонит вам в течение 15 минут.</p>
+                        <button class="btn" style="background: var(--white); color: var(--primary-blue);">Заказать звонок</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 АНО ДПО «Гуманитарная академия». Все права защищены. Лицензия на образовательную деятельность №0000.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Функция для раскрытия тем программ
+        function toggleProgram(element) {
+            // Закрываем все остальные открытые карточки (опционально)
+            const cards = document.querySelectorAll('.program-card');
+            cards.forEach(card => {
+                if (card !== element) {
+                    card.classList.remove('active');
+                }
+            });
+
+            // Переключаем текущую
+            element.classList.toggle('active');
+        }
+
+        // Плавное изменение цвета навигации при прокрутке
+        window.onscroll = function() {
+            const header = document.querySelector('header');
+            if (window.pageYOffset > 50) {
+                header.style.padding = "5px 0";
+                header.style.background = "#ffffff";
+            } else {
+                header.style.padding = "10px 0";
+            }
+        };
+    </script>
+</body>
+</html>
